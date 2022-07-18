@@ -13,14 +13,6 @@ module.exports = class TemporaryOtherSellerProductCount extends Sequelize.Model 
           type: Sequelize.TEXT,
           allowNull: false,
         },
-        buyma_product_status: {
-          type: Sequelize.TEXT,
-          allowNull: false,
-        },
-        buyma_product_realease_date: {
-          type: Sequelize.TEXT,
-          allowNull: false,
-        },
         today: {
           type: Sequelize.DATE,
           allowNull: false,

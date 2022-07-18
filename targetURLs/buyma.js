@@ -71,7 +71,6 @@ async function buyma() {
           let buymaItemId = document.querySelector('ul li[item-id]').getAttribute('item-id');
           return buymaItemId;
         });
-
         isDuplicationBuymaItemId = false;
         if (totalProducts.length > 0) {
           for (let j = 0; j < totalProducts.length; j++) {

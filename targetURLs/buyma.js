@@ -117,7 +117,7 @@ async function buyma() {
             if (product.buymaProductId) {
               try {
                 await OtherSellerProduct.upsert({
-                  other_seller_id: product.buymaProductId,
+                  other_seller_id: otherSellerResult[i].buyma_user_id,
                   buyma_product_id: product.buymaProductId,
                   buyma_product_name: product.buymaProductName,
                   category: product.category,

@@ -17,10 +17,6 @@ module.exports = class TemporaryOtherSellerProductCount extends Sequelize.Model 
           type: Sequelize.DATE,
           allowNull: false,
         },
-        cart: {
-          type: Sequelize.INTEGER.UNSIGNED,
-          allowNull: false,
-        },
         wish: {
           type: Sequelize.INTEGER.UNSIGNED,
           allowNull: false,

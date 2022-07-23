@@ -48,6 +48,7 @@ async function buyma() {
         if (!response) {
           throw 'Failed to load page!';
         }
+        await page.waitForTimeout(30000); // 없으면 크롤링 안됨
         let lastPage = await page.evaluate(() => {
           let lastPage = document
             .querySelector('.paging > a:nth-last-of-type(1)')

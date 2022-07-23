@@ -161,7 +161,7 @@ async function buyma() {
             throw 'Failed to load page!';
           }
 
-          await page.waitForTimeout(20000); // 없으면 크롤링 안됨
+          await page.waitForTimeout(30000); // 없으면 크롤링 안됨
 
           // buyma 상품 list 페이지의 마지막페이지 확인후, 첫번째 페이지로 돌아왔을때 중복 체크
           console.log('데이터 중복 체크 시작.');

@@ -15,7 +15,9 @@ async function buyma() {
     console.log('otherSeller테이블의 다른판매자ID데이터 취득시작.');
     let otherSellerResult = [];
     try {
-      otherSellerResult = await OtherSeller.findAll({ attributes: ['buyma_user_id'] });
+      otherSellerResult = await OtherSeller.findAll({
+        attributes: ['buyma_user_id', 'buyma_home_url'],
+      });
     } catch (e) {
       console.log('otherSeller select all error', e);
     }
@@ -33,7 +35,7 @@ async function buyma() {
       });
 
       // 라이프스타일 전상품을 크롤링 할 경우
-      if (otherSellerResult[i].buyma_user_id == '000001') {
+      if (otherSellerResult[i].buyma_user_id.length == 2) {
         console.log('최종 페이지 넘버 취득');
         page = await browser.newPage();
         // await page.setViewport({
@@ -41,7 +43,7 @@ async function buyma() {
         //   height: 1080,
         // });
         await page.setDefaultNavigationTimeout(0);
-        let response = await page.goto(`https://www.buyma.com/r/-C1004_1/`, {
+        let response = await page.goto(`${otherSellerResult[i].buyma_home_url}_1/`, {
           waitUntil: 'networkidle0',
           // timeout: 30000,
         });
@@ -79,7 +81,7 @@ async function buyma() {
               //   height: 1080,
               // });
               await page.setDefaultNavigationTimeout(0);
-              let response = await page.goto(`https://www.buyma.com/r/-C1004_${v}/`, {
+              let response = await page.goto(`${otherSellerResult[i].buyma_home_url}_${v}/`, {
                 waitUntil: 'networkidle0',
                 // timeout: 30000,
               });
@@ -90,7 +92,7 @@ async function buyma() {
               // await page.waitForTimeout(20000); // 없으면 크롤링 안됨
 
               // 데이터 크롤링
-              console.log(`https://www.buyma.com/r/-C1004_${v}/ 페이지 이동`);
+              console.log(`${otherSellerResult[i].buyma_home_url}_${v}/ 페이지 이동`);
               products = await page.evaluate((today) => {
                 let tags = document.querySelectorAll('ul li[item-id]');
                 let products = [];
@@ -112,7 +114,7 @@ async function buyma() {
               totalProducts.push(...products);
 
               await page.close();
-              console.log(`https://www.buyma.com/r/-C1004_${v}/ 페이지 종료`);
+              console.log(`${otherSellerResult[i].buyma_home_url}_${v}/ 페이지 종료`);
             }),
           );
         }

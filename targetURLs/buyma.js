@@ -71,8 +71,8 @@ async function buyma() {
         let totalProducts = [];
         let today = dayjs().format('YYYY/MM/DD');
         let tabOpenNum = Number(process.env.TAB_OPEN_NUM || tabOpenNum);
-        for (let i = 0; i < lastPage; i += tabOpenNum) {
-          let sliceArray = lastPageArr.slice(i, i + tabOpenNum);
+        for (let j = 0; j < lastPage; j += tabOpenNum) {
+          let sliceArray = lastPageArr.slice(j, j + tabOpenNum);
           await Promise.all(
             sliceArray.map(async (v) => {
               page = await browser.newPage();

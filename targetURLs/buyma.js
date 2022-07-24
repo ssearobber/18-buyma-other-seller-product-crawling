@@ -52,10 +52,12 @@ async function buyma() {
         }
         await page.waitForTimeout(30000); // 없으면 크롤링 안됨
         let lastPage = await page.evaluate(() => {
-          let lastPage = document
-            .querySelector('.paging > a:nth-last-of-type(1)')
-            .href.match(/_\d{3}|_\d{2}|_\d{1}/g)[0]
-            .replace(/_/g, '');
+          let lastPage =
+            document.querySelector('.paging > a:nth-last-of-type(1)') &&
+            document
+              .querySelector('.paging > a:nth-last-of-type(1)')
+              .href.match(/_\d{3}|_\d{2}|_\d{1}/g)[0]
+              .replace(/_/g, '');
           return lastPage;
         });
         await page.close();
